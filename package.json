@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-starter-portfolio-jodie",
+  "name": "bikette-express",
   "private": true,
   "description": "Image-heavy photography portfolio with colorful accents & great typography",
   "version": "1.0.0",
@@ -80,9 +80,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LekoArts/gatsby-starter-portfolio-jodie"
+    "url": "https://github.com/Clement-Lefay/interactive-menu"
   },
   "bugs": {
-    "url": "https://github.com/LekoArts/gatsby-starter-portfolio-jodie/issues"
+    "url": "https://github.com/Clement-Lefay/interactive-menu/issues"
   }
 }
