@@ -1,10 +1,10 @@
 require("dotenv").config({
   path: `.env`
-});
+})
 
-const config = require("./config");
+const config = require("./config")
 
-const pathPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix;
+const pathPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix
 
 module.exports = {
   pathPrefix: config.pathPrefix,
@@ -18,9 +18,9 @@ module.exports = {
     headline: config.siteHeadline,
     siteLanguage: config.siteLanguage,
     ogLanguage: config.ogLanguage,
-    author: config.author,
-    twitter: config.userTwitter,
-    facebook: config.ogSiteName
+    author: config.author
+    // twitter: config.userTwitter,
+    // facebook: config.ogSiteName
   },
   plugins: [
     "gatsby-plugin-react-helmet",
@@ -73,4 +73,4 @@ module.exports = {
     "gatsby-plugin-offline",
     "gatsby-plugin-netlify"
   ]
-};
+}
