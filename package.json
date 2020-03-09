@@ -1,7 +1,7 @@
 {
   "name": "bikette-express",
   "private": true,
-  "description": "Image-heavy photography portfolio with colorful accents & great typography",
+  "description": "An interactive menu for a restaurant, but not yet finished!",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {

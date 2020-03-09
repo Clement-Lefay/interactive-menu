@@ -91,15 +91,30 @@ const Project: React.FunctionComponent<PageProps> = ({ data: { project, images }
     to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
   })
 
-  const titleAnimation = useSpring({ config: config.slow, delay: 300, from: { opacity: 0 }, to: { opacity: 1 } })
-  const descAnimation = useSpring({ config: config.slow, delay: 600, from: { opacity: 0 }, to: { opacity: 1 } })
-  const imagesAnimation = useSpring({ config: config.slow, delay: 800, from: { opacity: 0 }, to: { opacity: 1 } })
+  const titleAnimation = useSpring({
+    config: config.slow,
+    delay: 300,
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
+  const descAnimation = useSpring({
+    config: config.slow,
+    delay: 600,
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
+  const imagesAnimation = useSpring({
+    config: config.slow,
+    delay: 800,
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
 
   return (
     <Layout color={project.color}>
       <SEO
         pathname={project.slug}
-        title={`${project.title_detail} | Jodie`}
+        title={`${project.title_detail} | Clement`}
         desc={project.desc}
         node={project.parent}
         banner={project.cover.childImageSharp.resize.src}
@@ -115,6 +130,7 @@ const Project: React.FunctionComponent<PageProps> = ({ data: { project, images }
       <Content bg={project.color} py={10}>
         <PBox style={imagesAnimation} px={[6, 6, 8, 10]}>
           {images.nodes.map(image => (
+            // eslint-disable-next-line prettier/prettier
             <Img alt={image.name} key={image.childImageSharp.fluid.src} fluid={image.childImageSharp.fluid} />
           ))}
         </PBox>

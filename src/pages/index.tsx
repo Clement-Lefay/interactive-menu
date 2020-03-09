@@ -1,12 +1,12 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import styled from "styled-components"
-import { animated, useSpring, config } from "react-spring"
-import Layout from "../components/layout"
-import GridItem from "../components/grid-item"
-import SEO from "../components/SEO"
-import { ChildImageSharp } from "../types"
+import React from 'react'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
+import { animated, useSpring, config } from 'react-spring'
+import Layout from '../components/layout'
+import GridItem from '../components/grid-item'
+import SEO from '../components/SEO'
+import { ChildImageSharp } from '../types'
 
 type PageProps = {
   data: {
@@ -32,19 +32,19 @@ const Area = styled(animated.div)`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 35vw 40vw 25vw;
   grid-template-areas:
-    "first-project about-us about-us"
-    "three-projects three-projects three-projects"
-    "instagram instagram instagram";
+    'first-project about-us about-us'
+    'three-projects three-projects three-projects'
+    'instagram instagram instagram';
 
   @media (max-width: ${props => props.theme.breakpoints[3]}) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      "first-project first-project about-us about-us"
-      "three-projects three-projects three-projects three-projects"
-      "three-projects three-projects three-projects three-projects"
-      "instagram instagram instagram instagram";
+      'first-project first-project about-us about-us'
+      'three-projects three-projects three-projects three-projects'
+      'three-projects three-projects three-projects three-projects'
+      'instagram instagram instagram instagram';
   }
 
   @media (max-width: ${props => props.theme.breakpoints[1]}) {
@@ -52,11 +52,11 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(5, 38vw);
 
     grid-template-areas:
-      "first-project about-us"
-      "three-projects three-projects"
-      "three-projects three-projects"
-      "three-projects three-projects"
-      "instagram instagram";
+      'first-project about-us'
+      'three-projects three-projects'
+      'three-projects three-projects'
+      'three-projects three-projects'
+      'instagram instagram';
   }
 
   @media (max-width: ${props => props.theme.breakpoints[0]}) {
@@ -64,12 +64,12 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(6, 50vw);
 
     grid-template-areas:
-      "first-project"
-      "about-us"
-      "three-projects"
-      "three-projects"
-      "three-projects"
-      "instagram";
+      'first-project'
+      'about-us'
+      'three-projects'
+      'three-projects'
+      'three-projects'
+      'instagram';
   }
 `
 
@@ -96,23 +96,18 @@ const Instagram = styled(GridItem)`
   grid-area: instagram;
 `
 
-const Index: React.FunctionComponent<PageProps> = ({
-  data: { firstProject, threeProjects, aboutUs }
-}) => {
+const Index: React.FunctionComponent<PageProps> = ({ data: { firstProject, threeProjects, aboutUs } }) => {
   const pageAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0 },
-    to: { opacity: 1 }
+    to: { opacity: 1 },
   })
 
   return (
     <Layout>
       <SEO />
       <Area style={pageAnimation}>
-        <FirstProject
-          to={firstProject.slug}
-          aria-label={`View project "${firstProject.title}"`}
-        >
+        <FirstProject to={firstProject.slug} aria-label={`View project "${firstProject.title}"`}>
           <Img fluid={firstProject.cover.childImageSharp.fluid} />
           <span>{firstProject.title}</span>
         </FirstProject>
@@ -122,11 +117,7 @@ const Index: React.FunctionComponent<PageProps> = ({
         </AboutUs>
         <ThreeProjects>
           {threeProjects.nodes.map(project => (
-            <GridItem
-              to={project.slug}
-              key={project.slug}
-              aria-label={`View project "${project.title}"`}
-            >
+            <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
               <Img fluid={project.cover.childImageSharp.fluid} />
               <span>{project.title}</span>
             </GridItem>
@@ -169,10 +160,7 @@ export const query = graphql`
         }
       }
     }
-    aboutUs: file(
-      sourceInstanceName: { eq: "images" }
-      name: { eq: "about-us" }
-    ) {
+    aboutUs: file(sourceInstanceName: { eq: "images" }, name: { eq: "about-us" }) {
       childImageSharp {
         fluid(quality: 95, maxWidth: 1200) {
           ...GatsbyImageSharpFluid_withWebp

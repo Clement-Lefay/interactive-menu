@@ -1,13 +1,13 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import styled from "styled-components"
-import { config, animated, useSpring, useTrail } from "react-spring"
-import { Flex } from "../elements"
-import Layout from "../components/layout"
-import { ChildImageSharp } from "../types"
-import SEO from "../components/SEO"
-import Heart from "../heart.svg"
+import React from 'react'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
+import { config, animated, useSpring, useTrail } from 'react-spring'
+import { Flex } from '../elements'
+import Layout from '../components/layout'
+import { ChildImageSharp } from '../types'
+import SEO from '../components/SEO'
+import Heart from '../heart.svg'
 
 const Grid = styled(animated.div)`
   display: grid;
@@ -117,7 +117,7 @@ const Instagram: React.FunctionComponent<Props> = () => {
   const pageAnimation = useSpring({
     config: config.default,
     from: { opacity: 0 },
-    to: { opacity: 1 }
+    to: { opacity: 1 },
   })
 
   // const trail = useTrail(instagram.length, {

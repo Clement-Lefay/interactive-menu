@@ -8,7 +8,7 @@ module.exports = {
   siteUrl: "https://clement.biketteexpress.ca", // Domain of your site. No trailing slash!
   siteLanguage: "en", // Language Tag on <html> element
   siteLogo: "/logos/logo.png", // Used for SEO and manifest
-  siteDescription: "A sample menu of a restaurant",
+  siteDescription: "A simple menu of a restaurant",
   author: "Clement Le Fay", // Author for schema.org JSONLD
 
   // siteFBAppID: '123456789', // Facebook App ID - Optional
