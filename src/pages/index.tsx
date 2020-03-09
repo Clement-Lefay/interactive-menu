@@ -10,12 +10,14 @@ import { ChildImageSharp } from '../types'
 
 type PageProps = {
   data: {
-    firstProject: {
-      title: string
-      slug: string
-      cover: ChildImageSharp
+    lunchtimeProjects: {
+      nodes: {
+        title: string
+        slug: string
+        cover: ChildImageSharp
+      }[]
     }
-    threeProjects: {
+    afterworkProjects: {
       nodes: {
         title: string
         slug: string
@@ -32,8 +34,8 @@ const Area = styled(animated.div)`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 35vw 40vw 25vw;
   grid-template-areas:
-    'first-project about-us about-us'
-    'three-projects three-projects three-projects'
+    'lunch-time lunch-time lunch-time'
+    'afterwork-time afterwork-time afterwork-time'
     'instagram instagram instagram';
 
   @media (max-width: ${props => props.theme.breakpoints[3]}) {
@@ -41,9 +43,9 @@ const Area = styled(animated.div)`
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      'first-project first-project about-us about-us'
-      'three-projects three-projects three-projects three-projects'
-      'three-projects three-projects three-projects three-projects'
+      'lunch-time lunch-time lunch-time lunch-time'
+      'afterwork-time afterwork-time afterwork-time afterwork-time'
+      'afterwork-time afterwork-time afterwork-time afterwork-time'
       'instagram instagram instagram instagram';
   }
 
@@ -52,10 +54,11 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(5, 38vw);
 
     grid-template-areas:
-      'first-project about-us'
-      'three-projects three-projects'
-      'three-projects three-projects'
-      'three-projects three-projects'
+      'lunch-time lunch-time'
+      'lunch-time lunch-time'
+      'afterwork-time afterwork-time'
+      'afterwork-time afterwork-time'
+      'afterwork-time afterwork-time'
       'instagram instagram';
   }
 
@@ -64,11 +67,12 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(6, 50vw);
 
     grid-template-areas:
-      'first-project'
-      'about-us'
-      'three-projects'
-      'three-projects'
-      'three-projects'
+      'lunch-time'
+      'lunch-time'
+      'lunch-time'
+      'afterwork-time'
+      'afterwork-time'
+      'afterwork-time'
       'instagram';
   }
 `
@@ -79,6 +83,27 @@ const FirstProject = styled(GridItem)`
 
 const AboutUs = styled(GridItem)`
   grid-area: about-us;
+`
+const LunchTime = styled.div`
+  grid-area: lunch-time;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: ${props => props.theme.breakpoints[1]}) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+`
+
+const AfterworkTime = styled.div`
+  grid-area: afterwork-time;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: ${props => props.theme.breakpoints[1]}) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `
 
 const ThreeProjects = styled.div`
@@ -96,7 +121,7 @@ const Instagram = styled(GridItem)`
   grid-area: instagram;
 `
 
-const Index: React.FunctionComponent<PageProps> = ({ data: { firstProject, threeProjects, aboutUs } }) => {
+const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, afterworkProjects, aboutUs } }) => {
   const pageAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0 },
@@ -107,22 +132,38 @@ const Index: React.FunctionComponent<PageProps> = ({ data: { firstProject, three
     <Layout>
       <SEO />
       <Area style={pageAnimation}>
-        <FirstProject to={firstProject.slug} aria-label={`View project "${firstProject.title}"`}>
+        <LunchTime>
+          {lunchtimeProjects.nodes.map(project => (
+            <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
+              <Img fluid={project.cover.childImageSharp.fluid} />
+              <span>{project.title}</span>
+            </GridItem>
+          ))}
+        </LunchTime>
+        <AfterworkTime>
+          {afterworkProjects.nodes.map(project => (
+            <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
+              <Img fluid={project.cover.childImageSharp.fluid} />
+              <span>{project.title}</span>
+            </GridItem>
+          ))}
+        </AfterworkTime>
+        {/* <FirstProject to={firstProject.slug} aria-label={`View project "${firstProject.title}"`}>
           <Img fluid={firstProject.cover.childImageSharp.fluid} />
           <span>{firstProject.title}</span>
         </FirstProject>
         <AboutUs to="/about" aria-label="Visit my about page">
           <Img fluid={aboutUs.childImageSharp.fluid} />
           <span>About</span>
-        </AboutUs>
-        <ThreeProjects>
+        </AboutUs> */}
+        {/* <ThreeProjects>
           {threeProjects.nodes.map(project => (
             <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
               <Img fluid={project.cover.childImageSharp.fluid} />
               <span>{project.title}</span>
             </GridItem>
           ))}
-        </ThreeProjects>
+        </ThreeProjects> */}
         <Instagram to="/instagram" aria-label="See my Instagram pictures">
           {/* <Img fluid={instagram.childImageSharp.fluid} /> */}
           <span>Instagram</span>
@@ -136,18 +177,20 @@ export default Index
 
 export const query = graphql`
   query Index {
-    firstProject: projectsYaml {
-      title
-      slug
-      cover {
-        childImageSharp {
-          fluid(quality: 95, maxWidth: 1200) {
-            ...GatsbyImageSharpFluid_withWebp
+    lunchtimeProjects: allProjectsYaml(limit: 3) {
+      nodes {
+        title
+        slug
+        cover {
+          childImageSharp {
+            fluid(quality: 95, maxWidth: 1200) {
+              src
+            }
           }
         }
       }
     }
-    threeProjects: allProjectsYaml(limit: 3, skip: 1) {
+    afterworkProjects: allProjectsYaml(limit: 2, skip: 3) {
       nodes {
         title
         slug

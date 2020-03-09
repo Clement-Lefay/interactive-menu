@@ -130,7 +130,6 @@ const Project: React.FunctionComponent<PageProps> = ({ data: { project, images }
       <Content bg={project.color} py={10}>
         <PBox style={imagesAnimation} px={[6, 6, 8, 10]}>
           {images.nodes.map(image => (
-            // eslint-disable-next-line prettier/prettier
             <Img alt={image.name} key={image.childImageSharp.fluid.src} fluid={image.childImageSharp.fluid} />
           ))}
         </PBox>
