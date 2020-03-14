@@ -177,7 +177,7 @@ export default Index
 
 export const query = graphql`
   query Index {
-    lunchtimeProjects: allProjectsYaml(limit: 3) {
+    lunchtimeProjects: allCategoriesYaml(limit: 3) {
       nodes {
         title
         slug
@@ -190,7 +190,7 @@ export const query = graphql`
         }
       }
     }
-    afterworkProjects: allProjectsYaml(limit: 2, skip: 3) {
+    afterworkProjects: allCategoriesYaml(limit: 2, skip: 3) {
       nodes {
         title
         slug

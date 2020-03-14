@@ -57,7 +57,7 @@ export default Projects
 
 export const query = graphql`
   query Projects {
-    projects: allProjectsYaml {
+    projects: allCategoriesYaml {
       nodes {
         title
         slug
