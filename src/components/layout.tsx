@@ -76,6 +76,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Work Sans', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif;
     background: white;
     font-size: 18px;
+    // cursor: url('/cursors/oth123.cur'), default !important;
   }
   a {
     transition: all 0.3s ease-in-out;
