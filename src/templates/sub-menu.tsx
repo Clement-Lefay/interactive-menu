@@ -109,7 +109,7 @@ type PageProps = {
   }
 }
 
-const SubMenu: React.FunctionComponent<PageProps> = ({ data: { categoryItems } }) => {
+const SubMenu: React.FunctionComponent<PageProps> = ({ data: { categoryItems, products } }) => {
   const pageAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0 },
@@ -159,7 +159,7 @@ const SubMenu: React.FunctionComponent<PageProps> = ({ data: { categoryItems } }
       </PBox>
       <Area style={pageAnimation}>
         {/* got to prevent the case when products is empty or non existing */}
-        {categoryItems.products.map(item => (
+        {products.nodes.map(item => (
           <GridItem key={item.slug} to={item.slug} aria-label={`View item "${item.name}"`}>
             <Img fluid={item.image.childImageSharp.fluid} />
             <span>{item.name}</span>
@@ -174,7 +174,7 @@ export default SubMenu
 
 // need to adapt the query when some data will be available
 export const query = graphql`
-  query SubMenuTemplate($slug: String!, $images: String!) {
+  query SubMenuTemplate($slug: String!, $images: String!, $category: String!) {
     categoryItems: categoriesYaml(slug: { eq: $slug }) {
       title
       title_detail
@@ -182,17 +182,6 @@ export const query = graphql`
       category
       desc
       slug
-      products {
-        slug
-        name
-        image {
-          childImageSharp {
-            fluid(quality: 95, maxWidth: 1200) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
       parent {
         ... on File {
           modifiedTime
@@ -213,6 +202,26 @@ export const query = graphql`
         childImageSharp {
           fluid(quality: 95, maxWidth: 1200) {
             ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+    products: allProductsYaml(filter: { category: { eq: $category } }, sort: { fields: name, order: ASC }) {
+      nodes {
+        name
+        slug
+        image {
+          childImageSharp {
+            fluid(quality: 95, maxWidth: 1200) {
+              base64
+              tracedSVG
+              srcWebp
+              srcSetWebp
+              originalImg
+              originalName
+              presentationWidth
+              presentationHeight
+            }
           }
         }
       }

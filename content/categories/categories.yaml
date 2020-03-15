@@ -6,18 +6,6 @@
   images: 'gathering'
   cover: './gathering/onigiri-pig.jpg'
   desc: "Because eating is one of the most important part of our live, we often decline and reduce this time to 'classique', nothing special."
-  products:
-    - name: 'Salmon Onigiri'
-      image: './gathering/salmon-onigiri.jpeg'
-      price: 1.00
-      desc: 'The most typical Japanese meal for lunch or a snack'
-      slug: '/gathering/salmon-onigiri'
-
-    - name: 'Tuna Onigiri'
-      image: './gathering/tuna-onigiri.jpg'
-      price: 1.00
-      desc: 'Another typical Japanese meal for lunch or a snack'
-      slug: '/gathering/tuna-onigiri'
 
 - title: 'Lunch drinks'
   title_detail: 'With good lunch always come a good drink!'
@@ -27,12 +15,6 @@
   images: 'lunch-drink'
   cover: './lunch-drink/healthy-drinks.jpg'
   desc: 'Get something to drink :)'
-  products:
-    - name: 'Salmon Onigiri'
-      image: './gathering/salmon-onigiri.jpeg'
-      price: 1.00
-      desc: 'The most typical Japanese meal for lunch or a snack'
-      slug: '/gathering/salmon-onigiri'
 # - title: 'Sweetssss'
 #   title_detail: 'Bring some sweet to your day to make it goooooooooooooood'
 #   slug: '/sweets-make-a-good-day'

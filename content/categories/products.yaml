@@ -1,0 +1,34 @@
+- name: 'Salmon Onigiri'
+  category: 'lunch_gathering'
+  image: './gathering/salmon-onigiri.jpeg'
+  price: 1.00
+  desc: 'The most typical Japanese meal for lunch or a snack'
+  slug: '/gathering/salmon-onigiri'
+
+- name: 'Tuna Onigiri'
+  category: 'lunch_gathering'
+  image: './gathering/tuna-onigiri.jpg'
+  price: 1.00
+  desc: 'Another typical Japanese meal for lunch or a snack'
+  slug: '/gathering/tuna-onigiri'
+
+- name: 'Panda Onigiri'
+  category: 'lunch_gathering'
+  image: './gathering/panda-onigiri.jpg'
+  price: 1.00
+  desc: 'Let you convinced by this cute little guy!'
+  slug: '/gathering/panda-onigiri'
+
+- name: 'Miso Yaki Onigiri'
+  category: 'lunch_gathering'
+  image: './gathering/miso-yaki-onigiri.jpg'
+  price: 1.00
+  desc: 'Something else to try'
+  slug: '/gathering/miso-yaki-onigiri'
+
+- name: 'Spanish Onigiri'
+  category: 'lunch_gathering'
+  image: './gathering/spanish-onigiri.jpg'
+  price: 1.00
+  desc: 'A nice mix of japanese and spanish culture'
+  slug: '/gathering/spanish-onigiri'

@@ -12,7 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // const projectTemplate = require.resolve('./src/templates/project.tsx')
   const subMenuTemplate = require.resolve('./src/templates/sub-menu.tsx')
-  // add the product template
+  const productDetailsTemplate = require.resolve('./src/templates/product-details.tsx')
 
   const result = await wrapper(
     graphql(`
@@ -21,14 +21,13 @@ exports.createPages = async ({ graphql, actions }) => {
           nodes {
             slug
             images
+            category
           }
         }
-        products: allCategoriesYaml {
+        products: allProductsYaml {
           nodes {
-            products {
-              slug
-              name
-            }
+            slug
+            name
           }
         }
       }
@@ -42,8 +41,18 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: node.slug,
         images: `/${node.images}/`,
+        category: node.category,
       },
     })
   })
-  // before applying the template to the product, we need to merge all products together in order to apply the same. No need to do a 2 level loop
+
+  result.data.products.nodes.forEach(node => {
+    createPage({
+      path: node.slug,
+      component: productDetailsTemplate,
+      context: {
+        slug: node.slug,
+      },
+    })
+  })
 }
