@@ -7,6 +7,7 @@ import { config, useSpring, animated } from 'react-spring'
 import Layout from '../components/layout'
 import { Box, AnimatedBox, Button } from '../elements'
 import SEO from '../components/SEO'
+import { ChildImageSharp } from '../types'
 
 const PBox = styled(AnimatedBox)`
   max-width: 1400px;
@@ -39,6 +40,12 @@ const Description = styled(animated.div)`
   line-height: 1.58;
 `
 
+const Area = styled(animated.div)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 50vw;
+`
+
 const PButton = styled(Button)<{ color: string }>`
   background: ${props => (props.color === 'white' ? 'black' : props.color)};
   color: ${props => readableColor(props.color === 'white' ? 'black' : props.color)};
@@ -46,45 +53,28 @@ const PButton = styled(Button)<{ color: string }>`
 
 type PageProps = {
   data: {
-    project: {
-      title_detail: string
-      color: string
+    product: {
+      name: string
       category: string
-      desc: string
       slug: string
+      desc: string
+      price: number
       parent: {
         modifiedTime: string
         birthTime: string
       }
-      cover: {
-        childImageSharp: {
-          resize: {
-            src: string
-          }
-        }
-      }
-    }
-    images: {
-      nodes: {
-        name: string
-        childImageSharp: {
-          fluid: {
-            aspectRatio: number
-            src: string
-            srcSet: string
-            sizes: string
-            base64: string
-            tracedSVG: string
-            srcWebp: string
-            srcSetWebp: string
-          }
-        }
-      }[]
+      image: ChildImageSharp
     }
   }
 }
 
-const Project: React.FunctionComponent<PageProps> = ({ data: { project, images } }) => {
+const Project: React.FunctionComponent<PageProps> = ({ data: { product } }) => {
+  const pageAnimation = useSpring({
+    config: config.slow,
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
+
   const categoryAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0, transform: 'translate3d(0, -30px, 0)' },
@@ -113,21 +103,28 @@ const Project: React.FunctionComponent<PageProps> = ({ data: { project, images }
   return (
     <Layout color={'white'}>
       <SEO
-        pathname={project.slug}
-        title={`${project.name} | Clement`}
-        desc={project.desc}
-        node={project.parent}
-        // banner={project.cover.childImageSharp.resize.src}
+        pathname={product.slug}
+        title={`${product.name} | Clement`}
+        desc={product.desc}
+        node={product.parent}
+        // banner={product.cover.childImageSharp.resize.src}
         individual
       />
       <PBox py={10} px={[6, 6, 8, 10]}>
-        <Category style={categoryAnimation}>{project.name}</Category>
-        {/* <animated.h1 style={titleAnimation}>{project.title_detail}</animated.h1>
+        <Category style={categoryAnimation}>{product.name}</Category>
+        {/* <animated.h1 style={titleAnimation}>{product.title_detail}</animated.h1>
         <Description style={descAnimation}>
-          <div dangerouslySetInnerHTML={{ __html: project.desc }} />
+          <div dangerouslySetInnerHTML={{ __html: product.desc }} />
         </Description> */}
       </PBox>
-      {/* <Content bg={project.color} py={10}>
+      <Area style={pageAnimation}>
+        {/* should find a default picture */}
+        <Img fluid={product.image.childImageSharp.fluid} />
+        <PBox py={10} px={[6, 6, 8, 10]}>
+          <Description style={descAnimation}>{product.desc}</Description>
+        </PBox>
+      </Area>
+      {/* <Content bg={product.color} py={10}>
         <PBox style={imagesAnimation} px={[6, 6, 8, 10]}>
           {images.nodes.map(image => (
             <Img alt={image.name} key={image.childImageSharp.fluid.src} fluid={image.childImageSharp.fluid} />
@@ -136,7 +133,7 @@ const Project: React.FunctionComponent<PageProps> = ({ data: { project, images }
       </Content>
       <PBox style={{ textAlign: 'center' }} py={10} px={[6, 6, 8, 10]}>
         <h2>Want to start your own project?</h2>
-        <PButton color={project.color} py={4} px={8}>
+        <PButton color={product.color} py={4} px={8}>
           Contact Us
         </PButton>
       </PBox> */}
@@ -148,12 +145,24 @@ export default Project
 
 export const query = graphql`
   query ProductTemplate($slug: String!) {
-    product: allProductsYaml(filter: { slug: { eq: $slug } }) {
-      nodes {
-        category
-        name
-        slug
-        price
+    product: productsYaml(slug: { eq: $slug }) {
+      name
+      category
+      price
+      slug
+      desc
+      parent {
+        ... on File {
+          modifiedTime
+          birthTime
+        }
+      }
+      image {
+        childImageSharp {
+          fluid(quality: 95) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
       }
     }
   }
