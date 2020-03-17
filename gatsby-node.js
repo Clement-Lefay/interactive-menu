@@ -10,7 +10,6 @@ const wrapper = promise =>
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  // const projectTemplate = require.resolve('./src/templates/project.tsx')
   const subMenuTemplate = require.resolve('./src/templates/sub-menu.tsx')
   const productDetailsTemplate = require.resolve('./src/templates/product-details.tsx')
 
@@ -40,7 +39,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: subMenuTemplate,
       context: {
         slug: node.slug,
-        images: `/${node.images}/`,
         category: node.category,
       },
     })

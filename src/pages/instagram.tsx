@@ -113,6 +113,7 @@ type Props = {
   }
 }
 
+// I don't use this page but I keep it in case I need some exemple if I want to try some stuff :)
 const Instagram: React.FunctionComponent<Props> = () => {
   const pageAnimation = useSpring({
     config: config.default,

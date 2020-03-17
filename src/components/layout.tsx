@@ -230,6 +230,7 @@ const Layout = ({ children, color }: LayoutProps) => {
               justifyContent="space-between"
             >
               <Box width={['3rem', '4rem', '5rem', '6rem']}>
+                {/* when not on the main page, the logo should change to display an arrow and go back to the previous page */}
                 <Link to="/" aria-label="LekoArts, Back to Home">
                   <Logo />
                 </Link>
@@ -253,8 +254,7 @@ const Layout = ({ children, color }: LayoutProps) => {
           <Main>{children}</Main>
           <Footer color={color}>
             <Box p={[6, 6, 8]} fontSize={0}>
-              Starter by <a href="https://www.lekoarts.de/en">LekoArts</a>.<br />
-              <a href="https://github.com/LekoArts/gatsby-starter-portfolio-jodie">Source</a>.
+              Bikette Express
             </Box>
           </Footer>
         </Wrapper>

@@ -24,7 +24,6 @@ type PageProps = {
         cover: ChildImageSharp
       }[]
     }
-    aboutUs: ChildImageSharp
     instagram: ChildImageSharp
   }
 }
@@ -76,14 +75,6 @@ const Area = styled(animated.div)`
       'instagram';
   }
 `
-
-const FirstProject = styled(GridItem)`
-  grid-area: first-project;
-`
-
-const AboutUs = styled(GridItem)`
-  grid-area: about-us;
-`
 const LunchTime = styled.div`
   grid-area: lunch-time;
   display: grid;
@@ -106,22 +97,11 @@ const AfterworkTime = styled.div`
   }
 `
 
-const ThreeProjects = styled.div`
-  grid-area: three-projects;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  @media (max-width: ${props => props.theme.breakpoints[1]}) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-  }
-`
-
 const Instagram = styled(GridItem)`
   grid-area: instagram;
 `
 
-const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, afterworkProjects, aboutUs } }) => {
+const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, afterworkProjects } }) => {
   const pageAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0 },
@@ -148,26 +128,10 @@ const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, 
             </GridItem>
           ))}
         </AfterworkTime>
-        {/* <FirstProject to={firstProject.slug} aria-label={`View project "${firstProject.title}"`}>
-          <Img fluid={firstProject.cover.childImageSharp.fluid} />
-          <span>{firstProject.title}</span>
-        </FirstProject>
-        <AboutUs to="/about" aria-label="Visit my about page">
-          <Img fluid={aboutUs.childImageSharp.fluid} />
-          <span>About</span>
-        </AboutUs> */}
-        {/* <ThreeProjects>
-          {threeProjects.nodes.map(project => (
-            <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
-              <Img fluid={project.cover.childImageSharp.fluid} />
-              <span>{project.title}</span>
-            </GridItem>
-          ))}
-        </ThreeProjects> */}
-        <Instagram to="/instagram" aria-label="See my Instagram pictures">
-          {/* <Img fluid={instagram.childImageSharp.fluid} /> */}
+        {/* <Instagram to="/instagram" aria-label="See my Instagram pictures">
+          <Img fluid={instagram.childImageSharp.fluid} />
           <span>Instagram</span>
-        </Instagram>
+        </Instagram> */}
       </Area>
     </Layout>
   )
