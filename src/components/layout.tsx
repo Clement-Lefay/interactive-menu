@@ -6,7 +6,7 @@ import 'typeface-work-sans'
 import { Box, Flex } from '../elements'
 import theme from '../../config/theme'
 import reset from '../styles/reset'
-import Logo from './logo'
+import DynamicLogo from './dynamicLogo'
 
 const GlobalStyles = createGlobalStyle`
   *::before,
@@ -229,12 +229,21 @@ const Layout = ({ children, color }: LayoutProps) => {
               alignItems={['center', 'center', 'center', 'flex-start']}
               justifyContent="space-between"
             >
-              <Box width={['3rem', '4rem', '5rem', '6rem']}>
-                {/* when not on the main page, the logo should change to display an arrow and go back to the previous page */}
-                <Link to="/" aria-label="LekoArts, Back to Home">
+              {/* <Box width={['3rem', '4rem', '5rem', '6rem']}>
+                <Link
+                  to="/"
+                  aria-label="LekoArts, Back to Home"
+                  onMouseEnter={() => {
+                    console.log('in')
+                  }}
+                  onMouseLeave={() => {
+                    console.log('leave')
+                  }}
+                >
                   <Logo />
                 </Link>
-              </Box>
+              </Box> */}
+              <DynamicLogo />
               <Nav
                 color={color}
                 mt={[0, 0, 0, 10]}
