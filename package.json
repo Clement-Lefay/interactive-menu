@@ -85,8 +85,5 @@
   },
   "bugs": {
     "url": "https://github.com/Clement-Lefay/interactive-menu/issues"
-  },
-  "resolutions": {
-    "cypresss": "3.5.0"
   }
 }
