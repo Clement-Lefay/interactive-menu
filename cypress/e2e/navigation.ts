@@ -13,7 +13,7 @@ describe('navigation', () => {
         .click({ force: true })
         .waitForRouteChange()
     })
-    cy.findByLabelText(/view project "Color"/i).assertRoute('/projects')
+    cy.findByLabelText(/Gathering/i).assertRoute('/projects')
   })
   it('link to about works', () => {
     cy.get('nav').within(() => {
@@ -21,7 +21,7 @@ describe('navigation', () => {
         .click({ force: true })
         .waitForRouteChange()
     })
-    cy.findByText(/Hi. I'm LekoArts!/i).assertRoute('/about')
+    cy.findAllByText(/Hi I'm Clement/i).assertRoute('/about')
   })
   it('link to home works', () => {
     cy.get('nav').within(() => {
@@ -29,7 +29,7 @@ describe('navigation', () => {
         .click({ force: true })
         .waitForRouteChange()
     })
-    cy.findByText(/Hi. I'm LekoArts!/i)
+    cy.findAllByText(/Hi I'm Clement/i)
       .assertRoute('/about')
       .findByLabelText(/LekoArts, Back to home/i)
       .click({ force: true })

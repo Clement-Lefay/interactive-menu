@@ -10,7 +10,7 @@
 - title: 'Lunch drinks'
   title_detail: 'With good lunch always come a good drink!'
   slug: '/lunch-beverage'
-  category: 'lunch_bevereage'
+  category: 'lunch_beverage'
   color: 'white'
   images: 'lunch-beverage'
   cover: './lunch-beverage/healthy-drinks.jpg'

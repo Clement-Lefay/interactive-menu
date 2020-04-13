@@ -2,7 +2,7 @@
   link: '/projects'
 - name: 'Gathering'
   link: '/gathering'
-- name: 'beverage'
+- name: 'Beverage'
   link: '/lunch-beverage'
 - name: 'Sweets'
   link: '/lunch_sweets'

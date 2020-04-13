@@ -105,7 +105,7 @@ const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, 
   const pageAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   })
 
   return (
@@ -114,7 +114,7 @@ const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, 
       <Area style={pageAnimation}>
         <LunchTime>
           {lunchtimeProjects.nodes.map(project => (
-            <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
+            <GridItem to={project.slug} key={project.slug} aria-label={`View category "${project.title}"`}>
               <Img fluid={project.cover.childImageSharp.fluid} />
               <span>{project.title}</span>
             </GridItem>
@@ -122,7 +122,7 @@ const Index: React.FunctionComponent<PageProps> = ({ data: { lunchtimeProjects, 
         </LunchTime>
         <AfterworkTime>
           {afterworkProjects.nodes.map(project => (
-            <GridItem to={project.slug} key={project.slug} aria-label={`View project "${project.title}"`}>
+            <GridItem to={project.slug} key={project.slug} aria-label={`View category "${project.title}"`}>
               <Img fluid={project.cover.childImageSharp.fluid} />
               <span>{project.title}</span>
             </GridItem>

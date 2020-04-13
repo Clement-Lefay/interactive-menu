@@ -35,7 +35,7 @@ const Projects: React.FunctionComponent<PageProps> = ({ data: { projects } }) =>
   const pageAnimation = useSpring({
     config: config.slow,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   })
 
   return (
@@ -43,7 +43,7 @@ const Projects: React.FunctionComponent<PageProps> = ({ data: { projects } }) =>
       <SEO title="Projects | Clement" />
       <Area style={pageAnimation}>
         {projects.nodes.map(project => (
-          <GridItem key={project.slug} to={project.slug} aria-label={`View project "${project.title}"`}>
+          <GridItem key={project.slug} to={project.slug} aria-label={`View category "${project.title}"`}>
             <Img fluid={project.cover.childImageSharp.fluid} />
             <span>{project.title}</span>
           </GridItem>
