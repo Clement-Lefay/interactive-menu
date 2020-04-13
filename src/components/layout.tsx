@@ -202,7 +202,7 @@ const Footer = styled.footer<{ color: string }>`
 type LayoutProps = { children: React.ReactNode } & typeof defaultProps
 
 const defaultProps = {
-  color: 'white',
+  color: 'white'
 }
 
 interface QueryResult {
@@ -264,6 +264,7 @@ const Layout = ({ children, color }: LayoutProps) => {
           <Footer color={color}>
             <Box p={[6, 6, 8]} fontSize={0}>
               Bikette Express
+              <a href="https://github.com/Clement-Lefay/interactive-menu">Source</a>.
             </Box>
           </Footer>
         </Wrapper>
